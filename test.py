@@ -15,14 +15,15 @@ else:
     pain_detector = PainDetector(image_size=160, checkpoint_path='checkpoints/50342566/50343918_3/model_epoch4.pt', num_outputs=40)
 
 print('Device: ', pain_detector.device)
-ref_frame1 = cv2.imread('example_frames/example-reference-frame.png')
-ref_frame2 = cv2.imread('example_frames/example-reference-frame.png')
-ref_frame3 = cv2.imread('example_frames/example-reference-frame.png')
+img='example_frames/BL1.jpg'
+ref_frame1 = cv2.imread(img)
+ref_frame2 = cv2.imread(img)
+ref_frame3 = cv2.imread(img)
 # In this example the reference frames are identical, but in a real scenario, the idea is to use different
 # reference frames from the same person. Ideally, the reference frames should have a neutral expression and should
 # exhibit slight lighting and camera angle variations.
 pain_detector.add_references([ref_frame1, ref_frame2, ref_frame3])
-target_frame = cv2.imread('example_frames/example-target-frame.png')
+target_frame = cv2.imread('example_frames/PA4.jpg')
 pain_estimate = pain_detector.predict_pain(target_frame)
 print(pain_estimate)
 
